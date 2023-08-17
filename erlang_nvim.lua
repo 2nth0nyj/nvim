@@ -32,24 +32,33 @@ require("lazy").setup({
 	},
 	{ "junegunn/fzf", build = "./install --bin" },
 	'preservim/nerdtree',
-	'jiangmiao/auto-pairs',
-	'tpope/vim-unimpaired', 
-	{'neoclide/coc.nvim', branch = 'release'}
+        -- {'neoclide/coc.nvim', branch = 'release'}
+	'neovim/nvim-lspconfig',
 })
 
--- 配置COC
+-- 配置LSP
+local nvim_lsp = require('lspconfig')
+local on_attach = function(client, bufnr)
+	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	local opts = {noremap = true, silent = true}
+	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts) --gD go to declaration
+	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)  --gd go to definition
+	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)  --gr go to references
+end
+nvim_lsp.erlangls.setup{ on_attach = on_attach }
 
 
 
 
 
 -- C-f 用fzf来找文件
-local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'find . -type f -name *.[eh]rl' })<CR>"
+local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files -g \\\'*.{erl,hrl,txt}\\\' '})<CR>"
 vim.keymap.set('n', '<C-f>', findFilesCommand, {silent = true})
 -- C-p 兼容以前VSCode的习惯 
 vim.keymap.set('n', '<C-p>', findFilesCommand, {silent = true})
 
-vim.keymap.set('n', '<Leader>f', 'Rg<CR>')
 
 --insert 模式下, C-w C-W 保存文件
 vim.keymap.set({'i', 'n', 'v'}, '<C-w>', "<ESC>:write<CR>a", {silent = true})
