@@ -1,7 +1,3 @@
-vim.opt.showtabline = 2
-vim.opt.number = true
-
-
 --好好学习， 习惯VIM操作模式，不要用方向键
 vim.keymap.set('n', '<Up>', '<NOP>')
 vim.keymap.set('n', '<Down>', '<NOP>')
@@ -31,10 +27,17 @@ require("lazy").setup({
   			end
 	},
 	{ "junegunn/fzf", build = "./install --bin" },
+	--文件管理器，必备
 	'preservim/nerdtree',
-        -- {'neoclide/coc.nvim', branch = 'release'}
+
+	--LSP要的包
 	'neovim/nvim-lspconfig',
+	'mhinz/vim-signify',
+	--就只用这个主题， 眼睛舒服
+	'tanvirtin/monokai.nvim',
 })
+
+require('monokai').setup{}
 
 -- 配置LSP
 local nvim_lsp = require('lspconfig')
@@ -47,21 +50,44 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)  --gd go to definition
 	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)  --gr go to references
 end
-nvim_lsp.erlangls.setup{ on_attach = on_attach }
-
-
-
-
+nvim_lsp.erlangls.setup{ 
+	on_attach = on_attach
+}
 
 -- C-f 用fzf来找文件
 local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files -g \\\'*.{erl,hrl,txt}\\\' '})<CR>"
-vim.keymap.set('n', '<C-f>', findFilesCommand, {silent = true})
+vim.keymap.set({'n', 'i'}, '<C-f>', findFilesCommand, {silent = true})
 -- C-p 兼容以前VSCode的习惯 
-vim.keymap.set('n', '<C-p>', findFilesCommand, {silent = true})
+vim.keymap.set({'n', 'i'}, '<C-p>', findFilesCommand, {silent = true})
+
+
+
+
+
+
+
+
 
 
 --insert 模式下, C-w C-W 保存文件
 vim.keymap.set({'i', 'n', 'v'}, '<C-w>', "<ESC>:write<CR>a", {silent = true})
 vim.keymap.set({'i', 'n', 'v'}, '<C-W>', "<ESC>:write<CR>a", {silent = true})
+
+--Ctrl-Q 关闭window
+vim.keymap.set({'i', 'n', 'v'}, '<C-q>', "<ESC>:$quit<CR>a", {silent = true})
+vim.keymap.set({'i', 'n', 'v'}, '<C-Q>', "<ESC>:$quit<CR>a", {silent = true})
+
+vim.keymap.set({'i'}, '<C-a>', "<ESC>0<CR>a", {silent = true})
+vim.keymap.set({'i'}, '<C-A>', "<ESC>0<CR>a", {silent = true})
+
+
+
+vim.opt.showtabline = 2
+vim.opt.number = true
+vim.opt.hlsearch = false
+vim.opt.termguicolors = true
+vim.cmd.colorschema = 'monokai'
+
+
 
 
