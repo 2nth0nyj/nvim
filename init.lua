@@ -50,24 +50,38 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)  --gd go to definition
 	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)  --gr go to references
 end
-nvim_lsp.erlangls.setup{ 
+
+nvim_lsp.erlangls.setup({ 
 	on_attach = on_attach
-}
+})
+
+nvim_lsp.rust_analyzer.setup({
+	on_attach = on_attach,
+    	settings = {
+        	["rust-analyzer"] = {
+            		imports = {
+                		granularity = {
+                    		group = "module",
+                		},
+                	prefix = "self",
+            		},
+            		cargo = {
+                		buildScripts = {
+                    		enable = true,
+                		},
+            		},
+            		procMacro = {
+                		enable = true
+            		},
+        	}
+    	}
+})
 
 -- C-f 用fzf来找文件
-local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files -g \\\'*.{erl,hrl,txt}\\\' '})<CR>"
+local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files -g \\\'*.{erl,hrl,txt,rs,lock,toml}\\\' '})<CR>"
 vim.keymap.set({'n', 'i'}, '<C-f>', findFilesCommand, {silent = true})
 -- C-p 兼容以前VSCode的习惯 
 vim.keymap.set({'n', 'i'}, '<C-p>', findFilesCommand, {silent = true})
-
-
-
-
-
-
-
-
-
 
 --insert 模式下, C-w C-W 保存文件
 vim.keymap.set({'i', 'n', 'v'}, '<C-w>', "<ESC>:write<CR>a", {silent = true})
@@ -87,7 +101,4 @@ vim.opt.number = true
 vim.opt.hlsearch = false
 vim.opt.termguicolors = true
 vim.cmd.colorschema = 'monokai'
-
-
-
 
