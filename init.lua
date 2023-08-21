@@ -239,7 +239,8 @@ vim.keymap.set({'n', 'i'}, '<C-p>', findFilesCommand, opts)
 
 --insert 模式下, C-w C-W 保存文件
 vim.keymap.set({'i', 'n', 'v'}, '<C-w>', "<ESC>:write<CR>a", opts)
-vim.keymap.set({'i', 'n', 'v'}, '<C-W>', "<ESC>:write<CR>a", opts)
+--Control-W for window motion, disable this.
+--vim.keymap.set({'i', 'n', 'v'}, '<C-W>', "<ESC>:write<CR>a", opts)
 
 --Ctrl-Q 关闭window
 vim.keymap.set({'i', 'n', 'v'}, '<C-q>', "<ESC>:$quit<CR>a", opts)
