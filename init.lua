@@ -249,3 +249,6 @@ vim.keymap.set({'i', 'n', 'v'}, '<C-Q>', "<ESC>:$quit<CR>a", opts)
 vim.keymap.set({'i'}, '<C-a>', "<ESC>0<CR>a", opts)
 vim.keymap.set({'i'}, '<C-A>', "<ESC>0<CR>a", opts)
 
+--F3 map to NERDTreeToggle
+vim.keymap.set({'n'}, '<F3>', '<ESC>:NERDTreeToggle<CR>', opts)
+
