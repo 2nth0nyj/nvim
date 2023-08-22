@@ -232,13 +232,13 @@ keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
 
 
 -- C-f 用fzf来找文件
-local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files -g \\\'*.{erl,hrl,txt,rs,lock,toml}\\\' '})<CR>"
+local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files -g \\\'*.{erl,hrl,txt,rs,lock,toml,config}\\\' '})<CR>"
 keyset({'n', 'i'}, '<C-f>', findFilesCommand, opts)
 -- C-p 兼容以前VSCode的习惯 
 vim.keymap.set({'n', 'i'}, '<C-p>', findFilesCommand, opts)
 
 --insert 模式下, C-w C-W 保存文件
-vim.keymap.set({'i', 'n', 'v'}, '<C-w>', "<ESC>:write<CR>a", opts)
+vim.keymap.set({'i', 'n', 'v'}, '<C-W>', "<ESC>:write<CR>a", opts)
 --Control-W for window motion, disable this.
 --vim.keymap.set({'i', 'n', 'v'}, '<C-W>', "<ESC>:write<CR>a", opts)
 
