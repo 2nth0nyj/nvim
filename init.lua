@@ -243,3 +243,6 @@ vim.keymap.set({'i'}, '<C-A>', "<ESC>0<CR>a", opts)
 --F3 map to NERDTreeToggle
 vim.keymap.set({'n'}, '<F3>', '<ESC>:NERDTreeToggle<CR>', opts)
 
+-- command mode :w 保存所有的文件
+vim.keymap.set({'c'}, 'w<CR>', 'wa<CR>', opts)
+
