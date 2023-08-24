@@ -233,6 +233,11 @@ local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files
 -- C-p 兼容以前VSCode的习惯 
 vim.keymap.set({'n', 'i'}, '<C-p>', findFilesCommand, opts)
 
+
+--Control-Grep 用来过滤查找
+local grepProjectCommand = "<cmd>lua require('fzf-lua').live_grep()<CR>"
+vim.keymap.set({'n', 'i'}, '<C-g>', grepProjectCommand, opts)
+
 --Ctrl-Q 关闭window
 vim.keymap.set({'i', 'n', 'v'}, '<C-q>', "<ESC>:$quit<CR>a", opts)
 vim.keymap.set({'i', 'n', 'v'}, '<C-Q>', "<ESC>:$quit<CR>a", opts)
