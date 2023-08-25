@@ -261,6 +261,11 @@ vim.keymap.set({'c'}, 'w<CR>', 'wa<CR>', opts)
 
 
 -- tab move
-vim.keymap.set({'n'}, '<Right>', '<ESC>:tabNext<CR>', opts)
-vim.keymap.set({'n'}, '<Left>',  '<ESC>:tabprevious<CR>', opts)
+local tabNext = "<ESC>:tabNext<CR>"
+local tabPrevious = "<ESC>:tabprevious<CR>"
+vim.keymap.set({'n'}, '<Right>',tabNext, opts)
+vim.keymap.set({'n'}, '<C-l>', tabNext, opts)
+vim.keymap.set({'n'}, '<Left>',tabPrevious, opts)
+vim.keymap.set({'n'}, '<C-h>', tabPrevious, opts)
+
 
