@@ -259,3 +259,8 @@ vim.keymap.set({'n'}, '<F3>', '<ESC>:Neotree toggle<CR>', opts)
 -- command mode :w 保存所有的文件
 vim.keymap.set({'c'}, 'w<CR>', 'wa<CR>', opts)
 
+
+-- tab move
+vim.keymap.set({'n'}, '<Right>', '<ESC>:tabNext<CR>', opts)
+vim.keymap.set({'n'}, '<Left>',  '<ESC>:tabprevious<CR>', opts)
+
