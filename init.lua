@@ -40,8 +40,16 @@ require("lazy").setup({
 	},
 	{ "junegunn/fzf", build = "./install --bin" },
 	
-	--文件管理器，必备
-	'preservim/nerdtree',
+	--换个新的文件管理器
+	{
+    		"nvim-neo-tree/neo-tree.nvim",
+    		branch = "v3.x",
+    		dependencies = {
+      			"nvim-lua/plenary.nvim",
+      			"nvim-tree/nvim-web-devicons", 
+      			"MunifTanjim/nui.nvim",
+    		},
+	},
 
 	--COC LSP要的包
 	{'neoclide/coc.nvim', branch = 'release' },
@@ -246,7 +254,7 @@ vim.keymap.set({'i'}, '<C-a>', "<ESC>0<CR>a", opts)
 vim.keymap.set({'i'}, '<C-A>', "<ESC>0<CR>a", opts)
 
 --F3 map to NERDTreeToggle
-vim.keymap.set({'n'}, '<F3>', '<ESC>:NERDTreeToggle<CR>', opts)
+vim.keymap.set({'n'}, '<F3>', '<ESC>:Neotree toggle<CR>', opts)
 
 -- command mode :w 保存所有的文件
 vim.keymap.set({'c'}, 'w<CR>', 'wa<CR>', opts)
