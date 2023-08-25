@@ -59,6 +59,21 @@ require("lazy").setup({
 
 	-- 左边要显示++ --和修改了的地方， 配合version control使用
 	'mhinz/vim-signify',
+
+	--加上 tree sitter
+	{
+		'nvim-treesitter/nvim-treesitter', 
+		build = ":TSUpdate", 
+		config = function() 
+			local configs = require("nvim-treesitter.configs")
+			configs.setup({
+				ensure_installed = { "erlang", "rust"},
+				sync_install = false,
+				highlight = { enable = true},
+				indent = { enable = true}
+			})
+		end
+	}
 })
 
 require('monokai').setup{}
