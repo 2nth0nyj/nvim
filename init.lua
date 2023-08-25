@@ -235,7 +235,7 @@ vim.keymap.set({'n', 'i'}, '<C-p>', findFilesCommand, opts)
 
 
 --Control-Grep 用来过滤查找
-local grepProjectCommand = "<cmd>lua require('fzf-lua').live_grep()<CR>"
+local grepProjectCommand = "<cmd>lua require('fzf-lua').live_grep({cwd = \"src\"})<CR>"
 vim.keymap.set({'n', 'i'}, '<C-g>', grepProjectCommand, opts)
 
 --Ctrl-Q 关闭window
