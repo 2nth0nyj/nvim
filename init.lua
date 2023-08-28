@@ -15,8 +15,12 @@ vim.keymap.set('n', '<Up>', '<NOP>')
 vim.keymap.set('n', '<Down>', '<NOP>')
 vim.keymap.set('n', '<Left>', '<NOP>')
 vim.keymap.set('n', '<Right>', '<NOP>')
---往下移动的时候总是不注意大小写，干脆把大写的Join功能禁用了
-vim.keymap.set({'n', 'v'} , 'J',     '<NOP>')
+--往下移动的时候总是不注意大小写，干脆把大写的Join功能禁用了,
+--其他的大写的H M L 之类的， 都禁用了， 免得总是按错.
+local disableStrings = { 'J', 'H', 'L', 'M' }
+for _, disabledKey in ipairs(disableStrings) do 
+  vim.keymap.set({'n', 'v'} , disabledKey, '<NOP>')
+end
 
 --lazypath 当作nvim的包管理器
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
