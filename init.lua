@@ -268,7 +268,7 @@ vim.keymap.set({'i', 'n', 'v'}, '<C-Q>', "<ESC>:$quit<CR>a", opts)
 vim.keymap.set({'i'}, '<C-a>', "<ESC>0<CR>a", opts)
 vim.keymap.set({'i'}, '<C-A>', "<ESC>0<CR>a", opts)
 
---F3 map to NERDTreeToggle
+--F3 map to Neo Tree Toggle
 vim.keymap.set({'n'}, '<F3>', '<ESC>:Neotree toggle<CR>', opts)
 
 -- command mode :w 保存所有的文件
