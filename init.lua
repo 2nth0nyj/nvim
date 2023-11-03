@@ -256,7 +256,7 @@ keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- Resume latest coc list
 keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
 
-local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files -g \\\'*.{erl,hrl,txt,rs,lock,toml,config}\\\' '})<CR>"
+local findFilesCommand = "<cmd>lua require('fzf-lua').files({cmd = 'rg . --files -g \\\'*.{erl,hrl,txt,rs,lock,toml,config,lua,cc,cpp,c,bat,ts,js,json,ex,exs}\\\' '})<CR>"
 -- C-p 兼容以前VSCode的习惯 
 vim.keymap.set({'n', 'i'}, '<C-p>', findFilesCommand, opts)
 
